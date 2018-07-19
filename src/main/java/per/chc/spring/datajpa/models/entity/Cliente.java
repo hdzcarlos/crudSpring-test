@@ -28,8 +28,17 @@ public class Cliente implements Serializable{
      * la anotación de jpa temporal, es una anotación que nos permite formatear la fecha y la hora.
      */
     @Column(name = "create_at" )
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE) // va a tomar el valor de la fecha y lo va a convertir al valor de la base de datos.
     private Date createAt;
+
+    /**
+     * Este metodo se llama justo antes de insertar en base de datos
+     *
+     */
+    @PrePersist
+    public void prePersist(){
+        createAt = new Date();
+    }
 
     public Long getId() {
         return id;

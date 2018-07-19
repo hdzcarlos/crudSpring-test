@@ -20,15 +20,21 @@ public class ClienteDAOImp  implements IClienteDAO{
      */
     @PersistenceContext
     private EntityManager entityManager;
-    @SuppressWarnings("uncheked")
+
     /**
      * Definimos el metodo transacional de consulta, solo de lectura.
      * El contenido del metodo lo va a envolver en una transación , si fuera de escritura omitiriamos el readOnly.
      */
-
+    @SuppressWarnings("uncheked")
     @Transactional(readOnly = true)
     @Override
     public List<Cliente> findAll() {
         return entityManager.createQuery("from Cliente").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void save(Cliente cliente) {
+        entityManager.persist(cliente);
     }
 }

@@ -10,4 +10,5 @@ public interface IClienteDAO {
      * @return
      */
     List<Cliente> findAll();
+    void save(Cliente cliente);
 }
